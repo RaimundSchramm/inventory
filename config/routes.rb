@@ -1,5 +1,11 @@
 Inventory::Application.routes.draw do
+
   root 'home#index'
+
+  resources :games
+
+  # EXAMPLES and default doc for routes.rb
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
