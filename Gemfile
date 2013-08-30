@@ -52,3 +52,8 @@ end
 gem 'haml-rails'
 
 gem 'thin'
+
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
