@@ -25,7 +25,7 @@ set :keep_releases,           1
 namespace :deploy do
   task :setup_config, roles: :app do
     run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/database.production.sample.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}"
   end
 
