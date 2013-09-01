@@ -20,3 +20,6 @@
 
 # Ignore local sublime files
 *.sublime*
+
+# Ignore public assets
+/public/assets
