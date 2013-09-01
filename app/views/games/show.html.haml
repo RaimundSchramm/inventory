@@ -3,6 +3,36 @@
 %p
   %strong Name:
   = @game.name
+%p
+  %strong Author:
+  = @game.author
+%p
+  %strong Category:
+  = @game.category
+%p
+  %strong Location:
+  = @game.location
+%p
+  %strong Min players:
+  = @game.min_players
+%p
+  %strong Max players:
+  = @game.max_players
+%p
+  %strong Min playtime:
+  = @game.min_playtime
+%p
+  %strong Max playtime:
+  = @game.max_playtime
+%p
+  %strong Rating:
+  = @game.rating
+%p
+  %strong Times played:
+  = @game.times_played
+%p
+  %strong Last played:
+  = @game.last_played
 
 = link_to 'Edit', edit_game_path(@game)
 |
