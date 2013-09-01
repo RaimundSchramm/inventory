@@ -4,14 +4,31 @@
   %thead
     %tr
       %th Name
-      %th
-      %th
-      %th
+      %th Author
+      %th Category
+      %th Location
+      %th Min players
+      %th Max players
+      %th Min playtime
+      %th Max playtime
+      %th Rating
+      %th Times played
+      %th Last played
 
   %tbody
     - @games.each do |game|
       %tr
         %td= game.name
+        %td= game.author
+        %td= game.category
+        %td= game.location
+        %td= game.min_players
+        %td= game.max_players
+        %td= game.min_playtime
+        %td= game.max_playtime
+        %td= game.rating
+        %td= game.times_played
+        %td= game.last_played
         %td= link_to 'Show', game
         %td= link_to 'Edit', edit_game_path(game)
         %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }
