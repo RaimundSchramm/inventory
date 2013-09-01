@@ -8,9 +8,58 @@
         - @game.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name
+  %fieldset.strings
+    %legend Enter text
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+    .field
+      = f.label :author
+      %br
+      = f.text_field :author
+    .field
+      = f.label :category
+      %br
+      = f.text_field :category
+    .field
+      = f.label :location
+      %br
+      = f.text_field :location
+
+  %fieldset.integers
+    %legend Enter numbers
+    .field
+      = f.label :min_players
+      %br
+      = f.text_field :min_players
+    .field
+      = f.label :max_players
+      %br
+      = f.text_field :max_players
+    .field
+      = f.label :min_playtime
+      %br
+      = f.text_field :min_playtime
+    .field
+      = f.label :max_playtime
+      %br
+      = f.text_field :max_playtime
+    .field
+      = f.label :rating
+      %br
+      = f.text_field :rating
+    .field
+      = f.label :times_played
+      %br
+      = f.text_field :times_played
+
+  %fieldset.dates
+    %legend Enter date
+    .field
+      = f.label :last_played
+      %br
+      = f.date_field :last_played
+
   .actions
     = f.submit

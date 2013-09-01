@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820141330) do
+ActiveRecord::Schema.define(version: 20130901101457) do
 
   create_table "games", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "author"
+    t.string   "category"
+    t.string   "location"
+    t.integer  "min_players"
+    t.integer  "max_players"
+    t.integer  "min_playtime"
+    t.integer  "max_playtime"
+    t.integer  "times_played"
+    t.integer  "rating"
+    t.date     "last_played"
   end
 
 end
