@@ -46,6 +46,11 @@ namespace :deploy do
     stop
     start
   end
+
+  task :setup_sqlite_db, roles: :app, except: { no_release: true } do
+    run "cd #{shared_path} && mkdir -p db"
+    run "cd #{current_path} && bundle exec rake db:create"
+  end
 end
 
 after "deploy", "deploy:cleanup"
