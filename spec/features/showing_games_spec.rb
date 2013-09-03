@@ -1,22 +1,20 @@
 require 'spec_helper'
 
 feature 'Showing games' do
-  background do
-    @any_date = Time.now
-    game = Game.create({
-      name: 'Skat',
-      author: 'Author of Skat',
-      category: 'Cardgame',
-      location: 'Raimund',
-      min_players: 3,
-      max_players: 4,
-      min_playtime: 1,
-      max_playtime: nil,
-      rating: 5,
-      times_played: 100,
-      last_played: @any_date
-    })
-  end
+  given(:any_date) { Date.today }
+  given!(:game) { Game.create({
+    name: 'Skat',
+    author: 'Author of Skat',
+    category: 'Cardgame',
+    location: 'Raimund',
+    min_players: 3,
+    max_players: 4,
+    min_playtime: 1,
+    max_playtime: nil,
+    rating: 5,
+    times_played: 100,
+    last_played: any_date
+    })}
 
   scenario 'lists all attributes of a game' do
     visit "/games/#{Game.last.id}"
@@ -31,7 +29,7 @@ feature 'Showing games' do
     expect(page).to have_content ''
     expect(page).to have_content '5'
     expect(page).to have_content '100'
-    expect(page).to have_content '2013-09-01'
+    expect(page).to have_content any_date
   end
 
   scenario 'access game detail view from games#index page' do
