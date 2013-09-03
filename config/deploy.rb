@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 
 set :application,             'inventory'
 
-server                        '192.168.178.25', :web, :app, :db, primary: true
+server                        '192.168.178.26', :web, :app, :db, primary: true
 set :user,                    'mund'
 set :deploy_to,               "/home/#{user}/projects/#{application}"
 set :use_sudo,                false
