@@ -17,7 +17,7 @@ set :bundle_flags,            '--system --quiet'
 set :scm,                     :git
 # set :branch, 'master'
 set :repo_path,               '/home/mund/repos/inventory.git'
-set :repository,              "#{user}@192.168.178.25:#{repo_path}"
+set :repository,              "#{user}@192.168.178.26:#{repo_path}"
 set :deploy_via,              :remote_cache
 
 set :keep_releases,           1
