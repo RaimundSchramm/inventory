@@ -31,4 +31,15 @@ feature 'Showing games' do
     click_on "#{game.name}"
     expect(page).to have_link "Edit", href: "/games/#{game.id}/edit"
   end
+
+  scenario 'each game detail page has a link for destroying' do
+    visit '/games'
+
+    # this expectation exists because the scenario follows a default rails scaffold
+    # which had this link
+    expect(page).not_to have_link "Destroy", href: "/games/#{game.id}"
+
+    click_on "#{game.name}"
+    expect(page).to have_link "Destroy", href: "/games/#{game.id}"
+  end
 end
