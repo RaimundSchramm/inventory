@@ -18,7 +18,7 @@
   %tbody
     - @games.each do |game|
       %tr
-        %td= game.name
+        %td= link_to game.name, game
         %td= game.author
         %td= game.category
         %td= game.location
@@ -29,7 +29,6 @@
         %td= game.rating
         %td= game.times_played
         %td= game.last_played
-        %td= link_to 'Show', game
         %td= link_to 'Edit', edit_game_path(game)
         %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }
 

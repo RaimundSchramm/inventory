@@ -49,4 +49,13 @@ feature 'Listing games' do
     expect(page).to have_content '100'
     expect(page).to have_content any_date
   end
+
+  scenario 'each game links to its detail page via its name' do
+    visit '/games'
+    expect(page).to have_link "#{game.name}", href: "/games/#{game.id}"
+
+    # this expectation exists because the scenario follows a default rails scaffold
+    # which had this link
+    expect(page).not_to have_link "Show", href: "/games/#{game.id}"
+  end
 end

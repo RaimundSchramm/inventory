@@ -2,8 +2,7 @@ require 'spec_helper'
 
 feature 'Updating games' do
   given(:any_date) { Date.today }
-  before do 
-    @game = Game.create({
+  given!(:game) { Game.create({
     name: 'Skat',
     author: 'Author of Skat',
     category: 'Cardgame',
@@ -15,14 +14,13 @@ feature 'Updating games' do
     rating: 5,
     times_played: 10,
     last_played: any_date
-    })
-  end
+    })}
 
   scenario 'access edit game from games#index page' do
     visit '/games'
 
     click_on 'Edit'
-    expect(current_path).to eq "/games/#{Game.last.id}/edit"
+    expect(current_path).to eq "/games/#{game.id}/edit"
     expect(page).to have_field('Name', with: 'Skat')
   end
 
@@ -30,8 +28,8 @@ feature 'Updating games' do
     visit '/games'
 
     click_on 'Edit'
-    expect(current_path).to eq "/games/#{Game.last.id}/edit"
-# save_and_open_page
+    expect(current_path).to eq "/games/#{game.id}/edit"
+
     expect(page).to have_field 'Name', with: 'Skat'
     expect(page).to have_field 'Author', with: 'Author of Skat'
     expect(page).to have_field 'Category', with: 'Cardgame'
@@ -57,7 +55,7 @@ feature 'Updating games' do
     fill_in 'Last played',        with: any_date.next_day
 
     click_on 'Update Game'
-    expect(current_path).to eq "/games/#{Game.last.id}"
+    expect(current_path).to eq "/games/#{game.id}"
     expect(page).to have_content 'Game was successfully updated.'
     expect(page).to have_content 'Rommie'
     expect(page).to have_content 'him'
@@ -71,20 +69,31 @@ feature 'Updating games' do
     expect(page).to have_content '5'
     expect(page).to have_content any_date.next_day
 
-    @game.reload
+    game.reload
+    expect(game.name).to eq 'Rommie'
+    expect(game.author).to eq 'him'
+    expect(game.category).to eq 'another Cardgame'
+    expect(game.location).to eq 'Mirko'
+    expect(game.min_players).to eq 4
+    expect(game.max_players).to eq nil
+    expect(game.min_playtime).to eq 10
+    expect(game.max_playtime).to eq 120
+    expect(game.rating).to eq 3
+    expect(game.times_played).to eq 5
+    expect(game.last_played).to eq any_date.next_day
   end
 
   scenario 'submitting the update accessed via show form updates the game' do
     visit '/games'
 
-    click_on 'Show'
-    expect(current_path).to eq "/games/#{Game.last.id}"
+    click_on "#{game.name}"
+    expect(current_path).to eq "/games/#{game.id}"
 
     click_on 'Edit'
     fill_in 'Name', with: 'Rommie'
     click_on 'Update Game'
-    expect(current_path).to eq "/games/#{Game.last.id}"
+    expect(current_path).to eq "/games/#{game.id}"
     expect(page).to have_content 'Rommie'
-    expect(@game.reload.name).to eq 'Rommie'
+    expect(game.reload.name).to eq 'Rommie'
   end
 end

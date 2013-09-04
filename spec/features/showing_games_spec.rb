@@ -17,7 +17,7 @@ feature 'Showing games' do
     })}
 
   scenario 'lists all attributes of a game' do
-    visit "/games/#{Game.last.id}"
+    visit "/games/#{game.id}"
 
     expect(page).to have_content 'Skat'
     expect(page).to have_content 'Author of Skat'
@@ -39,9 +39,9 @@ feature 'Showing games' do
     expect(page).to have_content 'Listing games'
 
     # table content
-    expect(page).to have_link 'Show'
-    click_on 'Show'
-    expect(current_path).to eq "/games/#{Game.last.id}"
+    expect(page).to have_link "#{game.name}", href: "/games/#{game.id}"
+    click_on "#{game.name}"
+    expect(current_path).to eq "/games/#{game.id}"
     expect(page).to have_content 'Skat'
   end
 
@@ -55,13 +55,13 @@ feature 'Showing games' do
     expect(page).to have_content 'Rommie'
   end
 
-  scenario 'access game detail view after adding a new game' do
+  scenario 'access game detail view after updating a new game' do
     visit '/games'
 
     click_on 'Edit'
     fill_in 'Name', with: 'Rommie'
     click_on 'Update Game'
-    expect(current_path).to eq "/games/#{Game.last.id}"
+    expect(current_path).to eq "/games/#{game.id}"
     expect(page).to have_content 'Rommie'
   end
 end
