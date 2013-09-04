@@ -18,7 +18,7 @@ set :scm,                     :git
 # set :branch, 'master'
 set :repo_path,               '/home/mund/repos/inventory.git'
 set :repository,              "#{user}@192.168.178.26:#{repo_path}"
-set :deploy_via,              :remote_cache
+# set :deploy_via,              :remote_cache
 
 set :keep_releases,           1
 
