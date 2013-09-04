@@ -6,7 +6,10 @@ feature 'Adding games' do
 
   scenario 'shows a form for adding a new game' do
 
-    visit '/games/new'
+    visit '/games'
+    click_on 'New Game'
+
+    expect(current_path).to eq new_game_path
 
     expect(page).to have_selector 'form'
     expect(page).to have_field    'Name'
@@ -20,6 +23,11 @@ feature 'Adding games' do
     expect(page).to have_field    'Rating'
     expect(page).to have_field    'Times played'
     expect(page).to have_field    'Last played'
+  end
+
+  scenario 'submitting a filled-out form adds a new game' do
+
+    visit '/games/new'
 
     fill_in 'Name',               with: 'Skat'
     fill_in 'Author',             with: 'me'
@@ -33,7 +41,7 @@ feature 'Adding games' do
     fill_in 'Times played',       with: '10'
     fill_in 'Last played',        with: any_date
 
-    click_button 'Create Game'
+    expect{ click_button 'Create Game' }.to change(Game, :count).from(0).to(1)
 
     expect(current_path).to eq "/games/#{Game.last.id}"
     expect(page).to have_content 'Game was successfully created.'
@@ -48,5 +56,13 @@ feature 'Adding games' do
     expect(page).to have_content '5'
     expect(page).to have_content '10'
     expect(page).to have_content any_date
+  end
+
+  scenario 'access game detail view after adding a new game' do
+    visit '/games'
+    click_on 'New Game'
+    fill_in 'Name', with: 'Rommie'
+    click_on 'Create Game'
+    expect(current_path).to eq "/games/#{Game.last.id}"
   end
 end

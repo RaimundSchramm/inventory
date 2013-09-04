@@ -1,34 +1,24 @@
 require 'spec_helper'
 
 feature 'Updating games' do
+
   given(:any_date) { Date.today }
-  given!(:game) { Game.create({
-    name: 'Skat',
-    author: 'Author of Skat',
-    category: 'Cardgame',
-    location: 'Raimund',
-    min_players: 3,
-    max_players: 4,
-    min_playtime: 1,
-    max_playtime: 0,
-    rating: 5,
-    times_played: 10,
-    last_played: any_date
-    })}
+  given!(:game) { FactoryGirl.create :game, last_played: any_date }
 
-  scenario 'access edit game from games#index page' do
+  scenario 'access edit game from games#show page' do
     visit '/games'
-
+    click_on "#{game.name}"
+    expect(current_path).to eq "/games/#{game.id}"
     click_on 'Edit'
-    expect(current_path).to eq "/games/#{game.id}/edit"
+    expect(page).to have_selector 'form'
     expect(page).to have_field('Name', with: 'Skat')
   end
 
   scenario 'submitting the update form updates the game' do
     visit '/games'
-
+    click_on "#{game.name}"
+    expect(current_path).to eq "/games/#{game.id}"
     click_on 'Edit'
-    expect(current_path).to eq "/games/#{game.id}/edit"
 
     expect(page).to have_field 'Name', with: 'Skat'
     expect(page).to have_field 'Author', with: 'Author of Skat'
@@ -95,5 +85,16 @@ feature 'Updating games' do
     expect(current_path).to eq "/games/#{game.id}"
     expect(page).to have_content 'Rommie'
     expect(game.reload.name).to eq 'Rommie'
+  end
+
+  scenario 'access game detail view after updating a new game' do
+    visit '/games'
+
+    click_on "#{game.name}"
+    click_on 'Edit'
+    fill_in 'Name', with: 'Rommie'
+    click_on 'Update Game'
+    expect(current_path).to eq "/games/#{game.id}"
+    expect(page).to have_content 'Rommie'
   end
 end
