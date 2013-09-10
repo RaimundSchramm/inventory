@@ -7,8 +7,8 @@ FactoryGirl.define do
     location      'Raimund'
     min_players   3
     max_players   4
-    min_playtime  1
-    max_playtime  0
+    min_playtime  60
+    max_playtime  120
     rating        5
     times_played  10
     last_played   '2013-09-01'

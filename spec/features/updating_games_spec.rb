@@ -26,8 +26,8 @@ feature 'Updating games' do
     expect(page).to have_field 'Location', with: 'Raimund'
     expect(page).to have_field 'Min players', with: '3'
     expect(page).to have_field 'Max players', with: '4'
-    expect(page).to have_field 'Min playtime', with: '1'
-    expect(page).to have_field 'Max playtime', with: '0'
+    expect(page).to have_field 'Min playtime', with: '60'
+    expect(page).to have_field 'Max playtime', with: '120'
     expect(page).to have_field 'Rating', with: '5'
     expect(page).to have_field 'Times played', with: '10'
     expect(page).to have_field 'Last played', with: any_date.to_s
