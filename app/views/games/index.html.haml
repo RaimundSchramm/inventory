@@ -1,31 +1,33 @@
 %h1 Listing games
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Author
-      %th Category
-      %th Location
-      %th Players
-      %th Playtime
-      %th Rating
-      %th Times played
-      %th Last played
+%section.context-menue
+  = link_to 'New Game', new_game_path
 
-  %tbody
-    - @games.each do |game|
-      %tr
-        %td= link_to game.name, game
-        %td= game.author
-        %td= game.category
-        %td= game.location
-        %td= game.min_to_max_players
-        %td= game.min_to_max_playtime
-        %td= game.rating
-        %td= game.times_played
-        %td= game.last_played
+%section
+  #tableWrapper
+    %table
+      %caption Games
+      %thead
+        %tr
+          %th= sortable 'name'
+          %th= sortable 'author'
+          %th= sortable 'category'
+          %th= sortable 'location'
+          %th= sortable 'min_players', 'Players'
+          %th= sortable 'min_playtime', 'Playtime'
+          %th= sortable 'rating'
+          %th= sortable 'times_played', 'Times played'
+          %th= sortable 'last_played', 'Last played'
 
-%br
-
-= link_to 'New Game', new_game_path
+      %tbody
+        - @games.each do |game|
+          %tr
+            %td= link_to game.name, game
+            %td= game.author
+            %td= game.category
+            %td= game.location
+            %td= game.min_to_max_players
+            %td= game.min_to_max_playtime
+            %td= game.rating
+            %td= game.times_played
+            %td= game.last_played

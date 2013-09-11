@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.order(sort_params)
   end
 
   # GET /games/1
@@ -73,4 +73,18 @@ class GamesController < ApplicationController
         :name, :author, :category, :location, :min_players, :max_players,
         :min_playtime, :max_playtime, :rating, :times_played, :last_played)
     end
+
+    def sort_params
+      sort_column + ' ' + sort_direction
+    end
+
+    def sort_column
+      Game.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+    end
+    helper_method :sort_column
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+    helper_method :sort_direction
 end

@@ -1,15 +1,11 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the GamesHelper. For example:
-#
-# describe GamesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 describe GamesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # clearify code organisation between controller, helper, view, spec etc.
+  # clearify how to use private controller helper methods in spec
+  describe 'sortable' do
+    xit 'returns a link for sending a request with sort params' do
+      expect(helper.sortable 'name').to eq link_to "Name"
+    end
+  end
 end
