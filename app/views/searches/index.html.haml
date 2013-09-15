@@ -1,0 +1,33 @@
+%h1 Listing games
+
+%section.context-menue
+  = link_to 'New Game', new_game_path
+
+%section.search
+  = link_to 'normal', games_path, data: { no_turbolink: true }
+
+%table#games.display
+  %caption Games
+  %thead
+    %tr
+      %th= 'Name'
+      %th= 'Author'
+      %th= 'Category'
+      %th= 'Location'
+      %th= 'Players'
+      %th= 'Playtime'
+      %th= 'Rating'
+      %th= 'Times played'
+      %th= 'Last played'
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= link_to game.name, game
+        %td= game.author
+        %td= game.category
+        %td= game.location
+        %td= game.min_to_max_players
+        %td= game.min_to_max_playtime
+        %td= game.rating
+        %td= game.times_played
+        %td= game.last_played

@@ -3,6 +3,7 @@ Inventory::Application.routes.draw do
   root 'home#index'
 
   resources :games
+  resources :searches, only: [:index]
 
   # EXAMPLES and default doc for routes.rb
 

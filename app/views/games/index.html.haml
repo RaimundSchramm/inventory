@@ -3,6 +3,9 @@
 %section.context-menue
   = link_to 'New Game', new_game_path
 
+%section.search
+  = link_to 'Data table', searches_path, data: { no_turbolink: true }
+
 %section
   #tableWrapper
     %table
