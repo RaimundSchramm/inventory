@@ -27,9 +27,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# search
 # gems for datatables
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
+
+gem 'ransack'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

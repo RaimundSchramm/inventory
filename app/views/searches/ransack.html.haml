@@ -6,9 +6,21 @@
 %section.search
   = link_to 'normal', games_path, data: { no_turbolink: true }
   |
-  = link_to 'Ransack', ransack_searches_path, data: { no_turbolink: true }, method: :post
+  = link_to 'DataTables', searches_path, data: { no_turbolink: true }
 
-%table#games.display
+%section.search-form
+  = search_form_for @search, url: ransack_searches_path, method: :post do |f|
+    = f.condition_fields do |c|
+      = render 'condition_fields', f: c
+    = link_to_add_fields 'Add conditions', f, :condition
+    .field
+      Sort:
+      = f.sort_fields do |s|
+        = s.sort_select
+    .actions
+      = f.submit 'Search'
+
+%table
   %caption Games
   %thead
     %tr

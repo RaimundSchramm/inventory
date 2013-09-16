@@ -3,7 +3,9 @@ Inventory::Application.routes.draw do
   root 'home#index'
 
   resources :games
-  resources :searches, only: [:index]
+  resources :searches, only: [:index] do
+    collection { post :ransack }
+  end
 
   # EXAMPLES and default doc for routes.rb
 
